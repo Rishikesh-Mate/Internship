@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <input type="text" id="answer" placeholder="Answer">
+    <br/>
+    <button onclick="myFunction()">Push</button>
+    <button onclick="getMedian()">Median</button>
+    <button onclick="getMode()">Mode</button>
+    <button onclick="getMean()">Mean</button>
+    <script>
+    var inputinputArray = [];
+        var size = 5;     
+
+
+        function myFunction() {
+             
+              var x = document.createElement("INPUT");
+              x.setAttribute("type", "text");
+              
+              for(var i=0; i<size; i++){
+              x.setAttribute("value", inputinputArray[i] = prompt('Enter Element ' + (i+1))) 
+            }
+             window.alert(inputinputArray);
+
+             
+              document.getElementById("answer").value=inputinputArray;
+} 
+            
+
+        function getMean() {
+            var sum = 0;
+                      
+            inputinputArray.forEach(num => {
+                sum += num;
+                });
+                      
+                var mean = sum / inputinputArray.length;
+                document.getElementById("answer").value=mean; 
+                 }
+        function getMedian() {
+            inputinputArray.sort(function(a, b){return a-b});
+            var median;
+                      
+            if (inputinputArray.length % 2 !== 0) {
+                median = inputinputArray[Math.floor(inputinputArray.length / 2)];
+                }
+            else {
+                var mid1 = inputinputArray[(inputinputArray.length / 2) - 1];
+                var mid2 = inputinputArray[inputinputArray.length / 2];
+                median = (mid1 + mid2) / 2;
+            }
+                document.getElementById("answer").value=median; 
+            }
+                    
+        function getMode(a) {
+            var modeObj = {};
+            inputinputArray.forEach(num => {
+            if (!modeObj[num]) modeObj[num] = 0;
+                modeObj[num]++;
+                });
+                
+            var maxFrequency = 0;
+            var modes = [];
+            for (var num in modeObj) {
+                if (modeObj[num] > maxFrequency) {
+                    modes = [num];
+                    maxFrequency = modeObj[num];
+                    }
+                else if (modeObj[num] === maxFrequency) modes.push(num);
+                }
+                    if (modes.length === Object.keys(modeObj).length) modes = [];
+                     document.getElementById("answer").value=modes; 
+                    }
+                    
+ 
+
+    </script>
+    
+</body>
+</html>
